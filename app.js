@@ -5,19 +5,19 @@
 >>>>>>> ae94c7b7e9506b6d14592b324543a834f11593b6
 
 let nombres = []; // Almaceno los nombres
-funtion AgregarAmigo() {
-    let input = document.querySelector("#amigo"); // captura el valor
+funtion agregarAmigo(){
+    let input = document.querySelector('#amigo'); // captura el valor
     let nombre = input.value.trim(); // Aquí elimino espacios en blanco, tipo para evitar también si solo ponen espacios que no lo coja como nombre.
     if (nombre){
         nombres.push(nombre); // ahí actualiza
-        actLista();
+        mostrarLista();
         input.value = ""; // Para que puedan escribir otro (limpia)
     } else {
         alert("Por favor, inserte un nombre");
     }
 }
 
-function actLista() {
+function mostrarLista(){
     let lista = document.querySelector("listaAmigos");
     lista.innerHTML = ""; // Aquí es para limpiar antes de actualizar
     nombres.forEach(nombre => {
@@ -26,7 +26,7 @@ function actLista() {
         lista.appendChild(li);
     });
 }
-function sortearAmigo() {
+function sortearAmigo(){
     if (nombres.length === 0) {
         alert("No hay nombres en la lista para sortear.");
         return;
@@ -37,3 +37,4 @@ function sortearAmigo() {
     
     document.querySelector("#resultado").innerHTML = `<li>${nombreSorteado}</li>`;
 }
+
