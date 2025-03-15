@@ -1,40 +1,41 @@
-<<<<<<< HEAD
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-=======
+//#Comentario sobre elecciones:
+//No pude hacerlo con "querySelector"
+// let input = document.querySelector('amigo');  
+// document.querySelector('resultado').innerHTM
+// let lista = document.querySelector('listaAmigos');
+let namigos = [];
+function agregarAmigo(){
+    let nombreamigo = document.getElementById('amigo').value;  //Captura nombre
+    console.log(typeof(nombreamigo));
+    console.log(nombreamigo);
 
->>>>>>> ae94c7b7e9506b6d14592b324543a834f11593b6
-
-let nombres = []; // Almaceno los nombres
-funtion agregarAmigo(){
-    let input = document.querySelector('#amigo'); // captura el valor
-    let nombre = input.value.trim(); // Aquí elimino espacios en blanco, tipo para evitar también si solo ponen espacios que no lo coja como nombre.
-    if (nombre){
-        nombres.push(nombre); // ahí actualiza
-        mostrarLista();
-        input.value = ""; // Para que puedan escribir otro (limpia)
-    } else {
-        alert("Por favor, inserte un nombre");
+    if((typeof nombreamigo === 'string') && (nombreamigo.trim().length > 0)){  //Espacio no vacio
+        namigos.push(nombreamigo.trim()); //Agrega nombre a lista
+        console.log(namigos);
+          mostrarLista(); 
+        document.getElementById('amigo').value = '';  //Limpieza
+    }else{
+        alert('Por favor inserte un nombre');
     }
 }
+function mostrarLista(){ 
+    let lista = document.getElementById('listaAmigos'); //Obtener los elementos de la lista
+    lista.innerHTML = ''; //Limpiar la lista
 
-function mostrarLista(){
-    let lista = document.querySelector("listaAmigos");
-    lista.innerHTML = ""; // Aquí es para limpiar antes de actualizar
-    nombres.forEach(nombre => {
-        let li = document.createElement("li");
-        li.textContent = nombre;
-        lista.appendChild(li);
-    });
+    for (i = 0; i < namigos.length; i++){
+        let item = document.createElement('li'); // li
+        item.textContent = namigos[i]; //Agrega nombres
+        lista.appendChild(item); 
+    }
 }
 function sortearAmigo(){
-    if (nombres.length === 0) {
-        alert("No hay nombres en la lista para sortear.");
-        return;
+    if(namigos.length === 0){
+        alert('No hay amigos en la lista para realizar el sorteo'); // En caso de vacía
+    }else{
+        let indiceAleatorio = Math.floor(Math.random() * namigos.length); //numero aleatorio
+         let amigost = namigos[indiceAleatorio]; //Seleccion de amigo
+        let resultado = document.getElementById('resultado'); 
+        resultado.innerHTML = `El amigo secreto es ${amigost}`; //Resultado
     }
-    
-    let indiceAleatorio = Math.floor(Math.random() * nombres.length);
-    let nombreSorteado = nombres[indiceAleatorio];
-    
-    document.querySelector("#resultado").innerHTML = `<li>${nombreSorteado}</li>`;
 }
 
